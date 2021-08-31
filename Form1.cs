@@ -20,31 +20,19 @@ namespace SistemaGerenciadorSTFolha
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
-            string[] entries = Directory.GetFileSystemEntries(Directory.GetCurrentDirectory(), "*.*", SearchOption.AllDirectories);
-
-            /*string text = "";
-
-            for(int i = 0; i < entries.Length; i++)
-            {
-                text = text + entries[i] + '\n';
-            }
-
-            MessageBox.Show(text, "oi", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-
-            //List<string> MyList = new List<string>();
-
-
             List<string> MyList = new List<string>(Directory.EnumerateDirectories(Directory.GetCurrentDirectory()));
 
-            foreach (var txt in entries)
-            {
-                MyList.Add(txt);
+            List<string> sistemas = new List<string>();
 
+            foreach(var elemento in MyList)
+            {
+                if(File.Exists(elemento + "\\STFolha.exe"))
+                {
+                    sistemas.Add(elemento);
+                }
             }
 
-            listBox1.DataSource = MyList;
+            listBox1.DataSource = sistemas;
 
         }
 
@@ -55,7 +43,9 @@ namespace SistemaGerenciadorSTFolha
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(listBox1.GetItemText(listBox1.SelectedItem), "oi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string executar = listBox1.Text;
+            System.Diagnostics.Process.Start(executar + "\\STFolha.exe");
+
         }
     }
 }
