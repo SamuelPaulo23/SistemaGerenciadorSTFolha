@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaGerenciadorSTFolha
-{
+{ 
     static class Program
     {
         /// <summary>
